@@ -1,7 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import App from './App.jsx';
-import TestComponent from './TestComponent.jsx';
 import './index.css';
 
 // Import the maps CSS file to apply styling to Google Maps components
