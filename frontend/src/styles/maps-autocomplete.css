@@ -1,0 +1,47 @@
+/* Google Maps PlaceAutocompleteElement custom styling */
+
+/* Apply styling to the component itself */
+gmp-place-autocomplete {
+  width: 100% !important;
+  font-family: inherit;
+  font-size: 1rem;
+  display: block;
+}
+
+/* Style the input inside shadow DOM - these get applied at the document level and penetrate shadow DOM */
+:root {
+  --gmpx-font-family: inherit;
+  --gmpx-text-color: rgba(0, 0, 0, 0.87);
+  --gmpx-text-field-shadow: none;
+  --gmpx-text-field-border-color: rgba(0, 0, 0, 0.23);
+  --gmpx-text-field-border-radius: 4px;
+  --gmpx-text-field-active-border-color: #1976d2;
+  --gmpx-text-field-active-outline-color: rgba(25, 118, 210, 0.25);
+  --gmpx-text-field-filled-background-color: #f5f5f5;
+  --gmpx-text-field-hover-border-color: rgba(0, 0, 0, 0.87);
+  --gmpx-text-field-min-height: 56px;
+  --gmpx-text-field-error-border-color: #d32f2f;
+  --gmpx-text-field-error-active-outline-color: rgba(211, 47, 47, 0.25);
+  --gmpx-text-field-active-state-layer-color: transparent;
+  /* Add mobile-specific improvements */
+  --gmpx-text-field-focus-width: 100%;
+  --gmpx-text-field-padding: 12px;
+  --gmpx-color-surface: white;
+}
+
+/* Add dropdown results styling */
+.pac-container {
+  border-radius: 4px;
+  margin-top: 2px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  font-family: inherit;
+}
+
+.pac-item {
+  padding: 8px 12px;
+  cursor: pointer;
+}
+
+.pac-item:hover {
+  background-color: #f5f5f5;
+}

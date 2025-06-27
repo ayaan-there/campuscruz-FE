@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>CampusCruz - College Ride Sharing</title>
+    <script>
+      // Early error monitoring
+      window.addEventListener('error', function(event) {
+        console.error('Global error caught:', event.error);
+        // Create visible error message
+        if (!document.getElementById('early-error-display')) {
+          const errorDisplay = document.createElement('div');
+          errorDisplay.id = 'early-error-display';
+          errorDisplay.style.position = 'fixed';
+          errorDisplay.style.top = '0';
+          errorDisplay.style.left = '0';
+          errorDisplay.style.right = '0';
+          errorDisplay.style.padding = '20px';
+          errorDisplay.style.backgroundColor = '#ffdddd';
+          errorDisplay.style.color = '#ff0000';
+          errorDisplay.style.zIndex = '9999';
+          errorDisplay.innerHTML = `
+            <h3>JavaScript Error:</h3>
+            <p>${event.message}</p>
+            <p>File: ${event.filename}</p>
+            <p>Line: ${event.lineno}, Column: ${event.colno}</p>
+          `;
+          document.body.prepend(errorDisplay);
+        }
+      });
+
+      // Log React initialization
+      console.log('HTML document loaded, waiting for React to initialize...');
+    </script>
+  </head>
+  <body>
+    <div id="root"></div>
+    <noscript>
+      <div style="padding: 20px; font-family: Arial;">
+        <h1>JavaScript Required</h1>
+        <p>This application requires JavaScript to run. Please enable JavaScript in your browser settings.</p>
+      </div>
+    </noscript>
+    <script type="module" src="/src/main.jsx"></script>
+  </body>
+</html>
