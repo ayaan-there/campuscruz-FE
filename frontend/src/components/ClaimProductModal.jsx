@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import './ClaimProductModal.css';
+import { API_URL } from '../config';
 
 const ClaimProductModal = ({ product, onClose, onSuccess }) => {
   const [pointsBalance, setPointsBalance] = useState(0);
@@ -23,7 +24,7 @@ const ClaimProductModal = ({ product, onClose, onSuccess }) => {
   const fetchPointsBalance = async () => {
     try {
       const token = localStorage.getItem('token');
-      const response = await fetch('http://localhost:5000/api/points/balance', {
+      const response = await fetch(`${API_URL}/api/points/balance`, {
         headers: { 'Authorization': `Bearer ${token}` }
       });
 
@@ -63,7 +64,7 @@ const ClaimProductModal = ({ product, onClose, onSuccess }) => {
 
     try {
       const token = localStorage.getItem('token');
-      const response = await fetch('http://localhost:5000/api/store/claim', {
+      const response = await fetch(`${API_URL}/api/store/claim`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

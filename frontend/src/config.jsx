@@ -1,7 +1,7 @@
 // Configuration constants for the application
 
-// Use environment variable for API URL, fallback to production URL
-export const API_URL = import.meta.env.VITE_API_URL || 'https://campuscruz.onrender.com';
+// Use environment variable for API URL, fallback to production backend URL
+export const API_URL = import.meta.env.VITE_API_BASE_URL || 'https://campuscruz-be.onrender.com';
 
 // Google Maps API Key
 export const GOOGLE_MAPS_API_KEY = import.meta.env.VITE_GOOGLE_MAPS_API_KEY;

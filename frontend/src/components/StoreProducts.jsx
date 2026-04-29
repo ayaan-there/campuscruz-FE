@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import './StoreProducts.css';
 import ClaimProductModal from './ClaimProductModal';
+import { API_URL } from '../config';
 
 const StoreProducts = () => {
   const [products, setProducts] = useState([]);
@@ -19,7 +20,7 @@ const StoreProducts = () => {
       const params = new URLSearchParams();
       if (category !== 'all') params.append('category', category);
 
-      const response = await fetch(`http://localhost:5000/api/store/products?${params}`, {
+      const response = await fetch(`${API_URL}/api/store/products?${params}`, {
         headers: {
           'Authorization': `Bearer ${localStorage.getItem('token')}`
         }

@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import './SOSButton.css';
+import { API_URL } from '../config';
 
 const SOSButton = ({ rideId, onSuccess }) => {
   const [showSOSMenu, setShowSOSMenu] = useState(false);
@@ -22,7 +23,7 @@ const SOSButton = ({ rideId, onSuccess }) => {
 
     try {
       const token = localStorage.getItem('token');
-      const response = await fetch(`http://localhost:5000/api/sos/alert/create`, {
+      const response = await fetch(`${API_URL}/api/sos/alert/create`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

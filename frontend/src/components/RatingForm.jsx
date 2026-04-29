@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import './RatingForm.css';
+import { API_URL } from '../config';
 
 const RatingForm = ({ rideId, driverId, onSuccess }) => {
   const [rating, setRating] = useState(0);
@@ -24,7 +25,7 @@ const RatingForm = ({ rideId, driverId, onSuccess }) => {
 
     try {
       const token = localStorage.getItem('token');
-      const response = await fetch(`http://localhost:5000/api/ratings/${rideId}/submit`, {
+      const response = await fetch(`${API_URL}/api/ratings/${rideId}/submit`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

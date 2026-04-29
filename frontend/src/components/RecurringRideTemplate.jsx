@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import './RecurringRideTemplate.css';
+import { API_URL } from '../config';
 
 const RecurringRideTemplate = ({ onSuccess }) => {
   const [formData, setFormData] = useState({
@@ -52,7 +53,7 @@ const RecurringRideTemplate = ({ onSuccess }) => {
 
     try {
       const token = localStorage.getItem('token');
-      const response = await fetch(`http://localhost:5000/api/recurring/template/create`, {
+      const response = await fetch(`${API_URL}/api/recurring/template/create`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
