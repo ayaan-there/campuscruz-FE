@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import './PointsBalance.css';
-import { API_URL } from '../config';
+import apiClient from '../utils/apiClient';
 
 const PointsBalance = () => {
   const [balance, setBalance] = useState(0);
@@ -13,21 +13,10 @@ const PointsBalance = () => {
 
   const fetchBalance = async () => {
     try {
-      const token = localStorage.getItem('token');
-      const response = await fetch(`${API_URL}/api/points/balance`, {
-        headers: {
-          'Authorization': `Bearer ${token}`
-        }
-      });
-
-      if (response.ok) {
-        const data = await response.json();
-        setBalance(data.balance);
-      } else {
-        setError('Failed to load points balance');
-      }
+      const response = await apiClient.get('/api/points/balance');
+      setBalance(response.data.balance);
     } catch (err) {
-      setError(err.message);
+      setError(err.message || 'Failed to load points balance');
     } finally {
       setLoading(false);
     }

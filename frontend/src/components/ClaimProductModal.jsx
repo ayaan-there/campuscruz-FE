@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import './ClaimProductModal.css';
-import { API_URL } from '../config';
+import apiClient from '../utils/apiClient';
 
 const ClaimProductModal = ({ product, onClose, onSuccess }) => {
   const [pointsBalance, setPointsBalance] = useState(0);
@@ -23,15 +23,8 @@ const ClaimProductModal = ({ product, onClose, onSuccess }) => {
 
   const fetchPointsBalance = async () => {
     try {
-      const token = localStorage.getItem('token');
-      const response = await fetch(`${API_URL}/api/points/balance`, {
-        headers: { 'Authorization': `Bearer ${token}` }
-      });
-
-      if (response.ok) {
-        const data = await response.json();
-        setPointsBalance(data.balance);
-      }
+      const response = await apiClient.get('/api/points/balance');
+      setPointsBalance(response.data.balance);
     } catch (err) {
       console.error('Error fetching points:', err);
     }
@@ -64,26 +57,14 @@ const ClaimProductModal = ({ product, onClose, onSuccess }) => {
 
     try {
       const token = localStorage.getItem('token');
-      const response = await fetch(`${API_URL}/api/store/claim`, {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-          'Authorization': `Bearer ${token}`
-        },
-        body: JSON.stringify({
-          productId: product._id,
-          shippingAddress: formData
-        })
+      const response = await apiClient.post('/api/store/claim', {
+        productId: product._id,
+        shippingAddress: formData
       });
 
-      if (response.ok) {
-        onSuccess();
-      } else {
-        const data = await response.json();
-        setError(data.message || 'Failed to claim product');
-      }
+      onSuccess();
     } catch (err) {
-      setError(err.message);
+      setError(err.response?.data?.message || err.message || 'Failed to claim product');
     } finally {
       setLoading(false);
     }

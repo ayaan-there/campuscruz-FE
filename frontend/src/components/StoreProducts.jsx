@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import './StoreProducts.css';
 import ClaimProductModal from './ClaimProductModal';
-import { API_URL } from '../config';
+import apiClient from '../utils/apiClient';
 
 const StoreProducts = () => {
   const [products, setProducts] = useState([]);
@@ -20,20 +20,10 @@ const StoreProducts = () => {
       const params = new URLSearchParams();
       if (category !== 'all') params.append('category', category);
 
-      const response = await fetch(`${API_URL}/api/store/products?${params}`, {
-        headers: {
-          'Authorization': `Bearer ${localStorage.getItem('token')}`
-        }
-      });
-
-      if (response.ok) {
-        const data = await response.json();
-        setProducts(data.products);
-      } else {
-        setError('Failed to load products');
-      }
+      const response = await apiClient.get(`/api/store/products?${params}`);
+      setProducts(response.data.products);
     } catch (err) {
-      setError(err.message);
+      setError(err.message || 'Failed to load products');
     } finally {
       setLoading(false);
     }
