@@ -1,0 +1,53 @@
+.points-balance {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+  padding: 20px;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  box-shadow: 0 4px 15px rgba(102, 126, 234, 0.3);
+  margin: 20px 0;
+}
+
+.points-balance.loading,
+.points-balance.error {
+  background: #f0f0f0;
+  color: #666;
+  justify-content: center;
+}
+
+.points-balance.error {
+  background: #fee;
+  color: #c33;
+}
+
+.points-icon {
+  font-size: 40px;
+  min-width: 50px;
+  text-align: center;
+}
+
+.points-content {
+  flex: 1;
+}
+
+.points-label {
+  margin: 0;
+  font-size: 12px;
+  opacity: 0.9;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.points-amount {
+  margin: 5px 0 0 0;
+  font-size: 32px;
+  font-weight: bold;
+}
+
+.points-hint {
+  margin: 8px 0 0 0;
+  font-size: 12px;
+  opacity: 0.8;
+}

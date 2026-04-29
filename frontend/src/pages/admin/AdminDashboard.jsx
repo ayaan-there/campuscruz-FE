@@ -48,7 +48,7 @@ const AdminDashboard = () => {
 
   useEffect(() => {
     // Check if user is admin
-    if (!user || !user.isAdmin) {
+    if (!user || user?.role !== 'admin') {
       navigate('/login', { state: { message: 'You must be an admin to access this page.' } });
       return;
     }
@@ -192,7 +192,12 @@ const AdminDashboard = () => {
             <>
               <Box sx={{ display: 'flex', justifyContent: 'space-between', mb: 2 }}>
                 <Typography variant="h6">Recently Registered Users</Typography>
-                <Button variant="contained" startIcon={<People />} onClick={() => navigate('/admin/users')}>
+                <Button 
+                  variant="contained" 
+                  startIcon={<People />} 
+                  disabled 
+                  title="Full user management page not yet implemented"
+                >
                   View All Users
                 </Button>
               </Box>
@@ -244,7 +249,12 @@ const AdminDashboard = () => {
             <>
               <Box sx={{ display: 'flex', justifyContent: 'space-between', mb: 2 }}>
                 <Typography variant="h6">Recent Rides</Typography>
-                <Button variant="contained" startIcon={<DirectionsCar />} onClick={() => navigate('/admin/rides')}>
+                <Button 
+                  variant="contained" 
+                  startIcon={<DirectionsCar />}
+                  disabled 
+                  title="Full rides management page not yet implemented"
+                >
                   View All Rides
                 </Button>
               </Box>

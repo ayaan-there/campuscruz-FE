@@ -9,14 +9,18 @@ import {
   Grid,
   Divider,
   CircularProgress,
-  Alert
+  Alert,
+  Tabs,
+  Tab
 } from '@mui/material';
-import { Edit, Save, Person, Badge, Email, Phone } from '@mui/icons-material';
+import { Edit, Save, Person, Badge, Email, Phone, StorefrontOutlined } from '@mui/icons-material';
 import { Formik, Form, Field } from 'formik';
 import * as Yup from 'yup';
 import { toast } from 'react-toastify';
 import { AuthContext } from '../context/AuthContext.jsx';
 import apiClient from '../utils/apiClient';
+import PointsBalance from '../components/PointsBalance.jsx';
+import StoreProducts from '../components/StoreProducts.jsx';
 
 const ProfileSchema = Yup.object().shape({
   name: Yup.string()
@@ -30,6 +34,7 @@ const Profile = () => {
   const [editing, setEditing] = useState(false);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState('');
+  const [tabValue, setTabValue] = useState(0);
   const [rideStats, setRideStats] = useState({
     totalRides: 0,
     offeredRides: 0,
@@ -314,37 +319,11 @@ const Profile = () => {
           </Paper>
         </Grid>
         
-        {/* Stats and Points */}
+        {/* Sidebar: Points Balance & Stats */}
         <Grid item xs={12} md={4}>
-          <Paper sx={{ p: 3, mb: 3 }}>
-            <Typography variant="h6" component="h3" gutterBottom>
-              Rewards & Points
-            </Typography>
-            <Divider sx={{ mb: 2 }} />
-            
-            <Box sx={{ 
-              display: 'flex', 
-              flexDirection: 'column',
-              alignItems: 'center',
-              p: 2,
-              backgroundColor: 'primary.light',
-              color: 'primary.contrastText',
-              borderRadius: 1
-            }}>
-              <Typography variant="h3" component="div" gutterBottom>
-                {user.points}
-              </Typography>
-              <Typography variant="body1">
-                Total Points
-              </Typography>
-            </Box>
-            
-            <Typography variant="body2" color="text.secondary" sx={{ mt: 2, textAlign: 'center' }}>
-              Earn 5 points for each passenger when you offer a ride, and 1 point when you join a ride!
-            </Typography>
-          </Paper>
+          <PointsBalance />
           
-          <Paper sx={{ p: 3 }}>
+          <Paper sx={{ p: 3, mt: 3 }}>
             <Typography variant="h6" component="h3" gutterBottom>
               Ride Statistics
             </Typography>
@@ -379,6 +358,23 @@ const Profile = () => {
           </Paper>
         </Grid>
       </Grid>
+
+      {/* Store Section */}
+      <Box sx={{ mt: 4 }}>
+        <Paper sx={{ p: 3 }}>
+          <Box sx={{ display: 'flex', alignItems: 'center', mb: 2 }}>
+            <StorefrontOutlined sx={{ mr: 2, fontSize: 28, color: 'primary.main' }} />
+            <Typography variant="h5" component="h2">
+              CampusCruz Store
+            </Typography>
+          </Box>
+          <Divider sx={{ mb: 3 }} />
+          <Typography variant="body2" color="text.secondary" sx={{ mb: 2 }}>
+            Redeem your points for exclusive campus merchandise!
+          </Typography>
+          <StoreProducts />
+        </Paper>
+      </Box>
     </Box>
   );
 };

@@ -48,7 +48,7 @@ const Dashboard = () => {
       }
       
       try {
-        const response = await apiClient.get('/api/rides');
+        const response = await apiClient.get('/api/users/me/rides');
         
         if (!mounted) return;
         
